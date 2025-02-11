@@ -17,6 +17,12 @@ local function get_kernel_version()
 		version = "latest"
 	end
 
+	-- check if first character of version is a 'v', this indicates a stable
+	-- branch
+	if version:sub(1, 1) ~= 'v' then
+		version = "latest"
+	end
+
 	return version
 end
 
