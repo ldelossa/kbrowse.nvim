@@ -61,7 +61,7 @@ local function user_command_handler(opts)
 	local kversion = get_kernel_version()
 	local link = format_link(kversion, start_line, end_line, buff_name_relative)
 
-	if opts.name == "KBrowseClipboard" then
+	if name == "KBrowseClipboard" then
 		vim.fn.setreg("+", link)
 		vim.notify("Link copied to clipboard")
 		return
@@ -69,9 +69,11 @@ local function user_command_handler(opts)
 
 	if vim.fn.has("mac") == 1 then
 		os.execute("open " .. link)
+		return
 	end
-	if vim.fn.has("unix") == 1 then
+	if vim.fn.has("linux") == 1 then
 		os.execute("xdg-open " .. link)
+		return
 	end
 end
 
