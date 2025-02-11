@@ -12,6 +12,11 @@ local function get_kernel_version()
 	f:close()
 	-- strip any new lines from version
 	version = version:gsub("\n", "")
+
+	if #version == 0 then
+		version = "latest"
+	end
+
 	return version
 end
 
