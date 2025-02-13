@@ -68,12 +68,10 @@ local function user_command_handler(opts)
 	end
 
 	if vim.fn.has("mac") == 1 then
-		os.execute("open " .. link)
-		return
+		vim.uv.spawn("open", { args = { link }, stdio = { nil, nil, nil } })
 	end
 	if vim.fn.has("linux") == 1 then
-		os.execute("xdg-open " .. link)
-		return
+		vim.uv.spawn("xdg-open", { args = { link }, stdio = { nil, nil, nil } })
 	end
 end
 
